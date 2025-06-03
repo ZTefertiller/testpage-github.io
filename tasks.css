@@ -1,0 +1,607 @@
+/* tasks.css – Clean, Modern, Overlay Hover Effect, Cards Fill, Button Styling */
+
+/* 1. Import Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+
+/* 2. Colors and Variables */
+:root {
+  --primary:         #3117b2;
+  --secondary:       #c8133e;
+  --foreground:      #f0f0f0;
+  --text-body:       #cccccc;
+  --text-light:      #aaaaaa;
+  --bg-page:         #1a202c;
+  --bg-light:        #23293a;
+  --bg-header:       #181d2a;
+  --border-light:    #2d3748;
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md:       0 4px 12px rgba(0,0,0,0.16);
+  --shadow-lg:       0 8px 25px rgba(0,0,0,0.2);
+  --shadow-header:   0 2px 12px rgba(0,0,0,0.12);
+  --radius:          8px;
+  --radius-lg:       16px;
+  --transition:      all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-headings:   "Inter", sans-serif;
+  --font-base:       "Source Serif Pro", serif;
+}
+
+/* 3. Reset and Base Styles */
+.interactive-tasks *,
+.interactive-tasks *::before,
+.interactive-tasks *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.interactive-tasks {
+  font-family: var(--font-base);
+  background: linear-gradient(135deg, var(--bg-page) 0%, #2d3748 100%);
+  color: var(--text-body);
+  min-height: 100vh;
+}
+
+/* 4. Headings */
+.interactive-tasks h1,
+.interactive-tasks h2,
+.interactive-tasks h3 {
+  font-family: var(--font-headings);
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* 5. Header/Nav */
+.interactive-tasks header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-header);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.interactive-tasks nav ul {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  min-height: 64px;
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.interactive-tasks nav a {
+  color: var(--text-light);
+  font-family: var(--font-headings);
+  font-weight: 500;
+  font-size: 0.96rem;
+  text-decoration: none;
+  padding: 0.75rem 0;
+  transition: var(--transition);
+}
+.interactive-tasks nav a:hover {
+  color: var(--primary);
+}
+
+/* 6. Main Layout */
+.interactive-tasks main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+.interactive-tasks .task-gallery {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+/* 7. Card Styling */
+.interactive-tasks .task-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+}
+.interactive-tasks .task-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+/* 8. Figure/Image: Overlay Swap, Fill Card, No Flex */
+.interactive-tasks .task-card figure {
+  position: relative;
+  width: 100%;
+  height: 200px;                /* Adjust for your preferred image height */
+  aspect-ratio: 4/3;
+  background: #181d2a;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Both images stacked absolutely, fill figure */
+.interactive-tasks .task-card figure img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.interactive-tasks .task-card figure img.static {
+  opacity: 1;
+  z-index: 2;
+}
+.interactive-tasks .task-card figure img.gif {
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 9. Card Info/Links */
+.interactive-tasks .task-info {
+  padding: 0.75rem 1.5rem 1.2rem 1.5rem;  /* Reduced top padding */
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.interactive-tasks .task-info h3 {
+  font-family: var(--font-headings);
+  color: var(--foreground);
+  margin-bottom: 0.5rem;  /* Reduced bottom margin */
+  font-size: 1.23rem;
+  font-weight: 600;
+}
+
+.interactive-tasks .task-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.interactive-tasks .task-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radius);
+  font-size: 0.93rem;
+  font-weight: 600;
+  font-family: var(--font-headings);
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+.interactive-tasks .task-links a.demo {
+  background: linear-gradient(135deg, var(--primary), #4c2db7);
+  color: #fff !important;
+  border: none;
+}
+.interactive-tasks .task-links a.demo:hover {
+  filter: brightness(1.13);
+  box-shadow: var(--shadow-md);
+}
+.interactive-tasks .task-links a.github {
+  background: #222;
+  color: #fff !important;
+  border: none;
+}
+.interactive-tasks .task-links a.github:hover {
+  background: #333;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 10. Responsive Tweaks */
+@media (max-width: 768px) {
+  .interactive-tasks nav ul { padding: 0 1rem; }
+  .interactive-tasks main { padding: 2rem 1rem; }
+  .interactive-tasks .task-gallery {
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  .interactive-tasks .task-card figure { height: 150px; }
+}
+
+/* 11. Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .interactive-tasks *, .interactive-tasks *::before, .interactive-tasks *::after {
+    transition: none !important;
+  }
+}
+
+/* 12. Footer (optional, style for contrast) */
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: .89rem;
+  color: var(--text-light);
+  letter-spacing: .02em;
+}
+
+.interactive-tasks .task-card figure {
+  position: relative;
+  width: 100%;
+  height: 200px;      /* or your preferred size */
+  aspect-ratio: 4/3;
+  background: #181d2a;
+  overflow: hidden;
+  margin: 0;
+  padding-top: 18px;  /* <-- Add this line for headroom! (adjust px as needed) */
+  box-sizing: border-box;
+}
+
+
+
+
+/* Enhanced Version Selector Styling */
+    .version-selector {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+
+
+    .select-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .select-wrapper select {
+      appearance: none;
+      background: var(--bg-page);
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      cursor: pointer;
+      font-family: var(--font-headings);
+      font-size: 0.9rem;
+      font-weight: 500;
+      outline: none;
+      padding: 0.5rem 2rem 0.5rem 0.75rem;
+      transition: var(--transition);
+      min-width: 80px;
+    }
+
+    .select-wrapper select:hover {
+      border-color: var(--primary);
+      background: var(--bg-light);
+    }
+
+    .select-wrapper select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(49, 23, 178, 0.1);
+      background: var(--bg-light);
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .select-wrapper:hover .select-arrow {
+      color: var(--primary);
+    }
+
+    .select-wrapper select:focus + .select-arrow {
+      color: var(--primary);
+    }
+
+    /* Option styling (limited browser support but progressive enhancement) */
+    .select-wrapper select option {
+      background: var(--bg-page);
+      color: var(--foreground);
+      padding: 0.5rem;
+    }
+
+
+    /* --- push the dropdown to the right of the buttons ----------------- */
+.interactive-tasks .task-links a.demo   { order: 1; }           /* NEW */
+.interactive-tasks .task-links a.github { order: 2; }           /* NEW */
+.interactive-tasks .task-links .version-selector {
+  order: 3;                /* comes after the buttons */        /* NEW */
+  margin-left: auto;       /* sticks to the far right */        /* NEW */
+}
+
+/* --- let the header scroll with the content ------------------------ */
+.interactive-tasks header {
+  position: static;   /* NEW – overrides the earlier “position: sticky;” */
+}
+
+
+/* --- button order / styling ---------------------------------------- */
+.interactive-tasks .task-links a.about {       /* NEW */
+  order: 2;                                   /* sits between Demo & GitHub */
+  background: var(--secondary);
+  color: #fff !important;
+}
+.interactive-tasks .task-links a.about:hover { /* NEW */
+  filter: brightness(1.13);
+  box-shadow: var(--shadow-md);
+}
+.interactive-tasks .task-links a.github  { order: 3; } /* shifted down 1 */ /* NEW */
+.interactive-tasks .task-links .version-selector { order: 4; }             /* NEW */
+
+/* --- collapsible “about” panel ------------------------------------- */
+.task-about {                                 /* NEW */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-body);
+}
+.task-about.open {                            /* NEW */
+  max-height: 250px;  /* enough for a short blurb */
+  opacity: 1;
+}
+
+
+/* === focus-mode / overlay ========================================= */
+.overlay {                               /* NEW */
+  position: fixed;                       /* NEW */
+  inset: 0;                              /* NEW */
+  background: rgba(0,0,0,0.65);          /* NEW */
+  opacity: 0;                            /* NEW */
+  pointer-events: none;                  /* NEW */
+  transition: opacity .3s ease;          /* NEW */
+  z-index: 900;                          /* NEW */
+}
+.overlay.show {                          /* NEW */
+  opacity: 1;                            /* NEW */
+  pointer-events: auto;                  /* NEW */
+}
+
+.task-card.focused {                     /* NEW */
+  position: fixed;                       /* NEW */
+  top: 50%; left: 50%;                   /* NEW */
+  transform: translate(-50%,-50%);       /* NEW */
+  z-index: 1000;                         /* NEW */
+  width: 90%; max-width: 640px;          /* NEW */
+  max-height: 90vh; overflow-y: auto;    /* NEW */
+  box-shadow: var(--shadow-lg);          /* NEW */
+}
+
+.task-card.focused .task-about {         /* NEW */
+  max-height: none;                      /* NEW */
+  opacity: 1;                            /* NEW */
+}
+
+/* close / back button */
+.close-about {                           /* NEW */
+  margin-top: 1rem;                      /* NEW */
+  padding: 0.55rem 1.2rem;               /* NEW */
+  font-family: var(--font-headings);     /* NEW */
+  font-weight: 600;                      /* NEW */
+  border: none; border-radius: var(--radius); /* NEW */
+  cursor: pointer;                       /* NEW */
+  background: var(--primary);            /* NEW */
+  color: #fff;                           /* NEW */
+  transition: var(--transition);         /* NEW */
+}
+.close-about:hover { filter: brightness(1.1); } /* NEW */
+
+
+/* smoother centre-animation & no hover wiggle */
+.task-card.focused {                                        /* NEW */
+  transition: transform .35s cubic-bezier(.25,.8,.25,1),
+              width .35s cubic-bezier(.25,.8,.25,1),
+              max-height .35s cubic-bezier(.25,.8,.25,1);   /* NEW */
+}
+.task-card.focused:hover { transform: translate(-50%,-50%); }/* NEW */
+
+/* hide About button while focused */
+.task-card.focused .about { display:none; }                 /* NEW */
+
+/* always show GIF, never static, while focused */
+.task-card.focused .static { opacity:0; }                   /* NEW */
+.task-card.focused .gif    { opacity:1; }                   /* NEW */
+
+
+/* — make the spotlighted card roomier ------------------------------------ */
+.task-card.focused {                                   /* NEW */
+  width: 95%;                      /* broader than before            */
+  max-width: 860px;                /* fits text + big preview        */
+  max-height: 92vh;                /* leaves a little headroom       */
+}
+
+.task-card.focused figure {                            /* NEW */
+  height: 320px;                   /* taller GIF / static preview    */
+}
+
+.task-card.focused .task-info {                        /* NEW */
+  padding: 1.2rem 2rem 2rem;      /* more breathing-space           */
+}
+
+.task-card.focused .task-about p { margin-top: 1rem; } /* NEW */
+
+
+
+/* taller preview while focused -------------------------------------- */
+.task-card.focused figure { height: 400px; }            /* NEW */
+
+/* remove the (now-gone) Back button rule ---------------------------- */
+.close-about { display:none !important; }               /* NEW */
+
+
+/* smoother path to the centre (top / left animate too) -------------- */
+.task-card.focused {                                           /* NEW */
+  transition: top .35s cubic-bezier(.25,.8,.25,1),
+              left .35s cubic-bezier(.25,.8,.25,1),
+              transform .35s cubic-bezier(.25,.8,.25,1),
+              width .35s cubic-bezier(.25,.8,.25,1),
+              height .35s cubic-bezier(.25,.8,.25,1),
+              max-height .35s cubic-bezier(.25,.8,.25,1);
+}
+
+/* even taller preview in spotlight --------------------------------- */
+.task-card.focused figure { height: 460px; }                   /* NEW */
+
+/* invisible element that keeps the grid from re-flowing ----------- */
+.card-placeholder {                                            /* NEW */
+  visibility: hidden;
+  grid-column: span 1;
+}
+
+
+/* card acts like a button when not focused --------------------------- */
+.task-card { cursor: pointer; }            /* NEW */
+
+
+/* baseline gif a bit taller ----------------------------------------- */
+.task-card figure { height: 220px; }                     /* NEW */
+
+/* spotlighted card: wider & much taller gif ------------------------- */
+.task-card.focused        { max-width: 900px; }          /* NEW */
+.task-card.focused figure { height: 500px; }             /* NEW */
+
+/* smooth resize + slide --------------------------------------------- */
+.task-card {                                              /* NEW */
+  transition: transform .35s cubic-bezier(.25,.8,.25,1),
+              width .35s cubic-bezier(.25,.8,.25,1),
+              height .35s cubic-bezier(.25,.8,.25,1);   /* ← NEW */
+}
+
+
+
+/* put the children of .task-info in a predictable column order */
+.interactive-tasks .task-info {                /* NEW */
+  display: flex;                               /* was already flex, but explicit */
+  flex-direction: column;                      /* NEW */
+}
+
+/* description right after the title */
+.interactive-tasks .task-info .task-about {    /* NEW */
+  order: 2;            /* h3 is order:0 (default)           */
+  margin-top: 0.75rem; /* little breathing room             */
+}
+
+/* buttons always come last */
+.interactive-tasks .task-info .task-links {    /* NEW */
+  order: 3;
+}
+
+
+.task-card.focused figure img { transition: none !important; }  /* NEW */
+
+
+
+
+/* Make the focused card a tad wider */
+.task-card.focused {
+  width: 100%;
+  max-width: 1024px;
+}
+
+.task-card.focused {
+  max-width: 1200px;   /* or whatever upper bound you prefer */
+}
+
+
+/* 1. hide wrapper + kill clicks when NOT focused */
+.task-card .version-selector          { display: none; }
+.task-card .version-selector select   { pointer-events: none; }
+
+/* 2. bring it back (and re-enable) on the spotlighted card */
+.task-card.focused .version-selector        { display: flex; }   /* or inline-block */
+.task-card.focused .version-selector select { pointer-events: auto; }
+
+
+/* — swap Demo and About button positions — */
+.interactive-tasks .task-links a.about { order: 1; }   /* now shows up first */
+.interactive-tasks .task-links a.demo  { order: 2; }   /* right after About */
+
+
+
+/* ======== tighten the gap under the image ======== */
+/* normal cards */
+.interactive-tasks .task-info {
+  padding-top: 0.1rem;   /* was 0.75rem */
+}
+
+/* focussed card */
+.task-card.focused .task-info {
+  padding-top: 0.5rem;    /* was 1.2rem – still roomier but closer to the image */
+}
+
+/* ======== bump the title size ======== */
+.interactive-tasks .task-info h3 {
+  font-size: 1.35rem;     /* was 1.23rem */
+}
+
+@media (min-width: 768px) {              /* optional: scale a bit more on big screens */
+  .interactive-tasks .task-info h3 {
+    font-size: 1.45rem;
+  }
+}
+
+
+
+/* =========================================================
+   Bring title closer to the picture + make it larger
+   (place AFTER every other rule in tasks.css)
+   ========================================================= */
+
+/* 1. shrink the space under the image --------------------- */
+.task-card:not(.focused) .task-info {
+  padding-top: 0.15rem !important;   /* was 0.75rem */
+}
+
+.task-card.focused .task-info {
+  padding-top: 0.15rem !important;   /* was 1.2rem */
+}
+
+/* 2. bump the title size ---------------------------------- */
+.task-card .task-info h3 {
+  font-size: 1.4rem;                 /* was 1.23rem */
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {          /* optional: a bit bigger on wide screens */
+  .task-card .task-info h3 { font-size: 1.55rem; }
+}
+
+/* put THIS near the very end of tasks.css so it overrides everything before */
+
+/* normal card ------------------------------------------------------ */
+.task-card:not(.focused) .task-info {
+  justify-content: flex-start !important;   /* was flex-end */
+  padding-top: 1.4rem !important;          /* tight gap under the image */
+}
+
+/* focussed card ---------------------------------------------------- */
+.task-card.focused .task-info {
+  justify-content: flex-start !important;
+  padding-top: 1rem !important;           /* a hair more breathing-room */
+}
+
+/* keep the buttons stuck to the bottom ----------------------------- */
+.task-card .task-info .task-links {
+  margin-top: auto;                         /* pushes them downward */
+}
+
+/* uniform heading block height + bigger font */
+.task-card .task-info h3 {
+  font-size: 1.75rem;       /* tweak to taste */
+  line-height: 1;
+  min-height: 3.2rem;       /* ≈ 2 lines at the font-size above */
+}
